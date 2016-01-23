@@ -16,6 +16,14 @@ public class GestionEtats extends Thread {
         this.etat = etat;
     }
     
+    
+    /*
+    On peut modifier l'état toutes les minutes 
+    ou mettre en place un gestionnaire pour ajouter 1 par 1
+    http://stackoverflow.com/questions/16748438/java-how-to-increment-an-int-1-every-second-until-it-gets-to-15
+    
+    Le gestionnaire donnerait un rendu visuel meilleur...
+    */
     @Override
     public void run() {
         
