@@ -17,4 +17,37 @@ public class Race {
             tauxSoif,
             tauxEnnui,
             tauxFatigue;
+
+    public Race(String nom, String image, int tauxFaim, int tauxSoif, int tauxEnnui, int tauxFatigue) {
+        this.nom = nom;
+        this.image = image;
+        this.tauxFaim = tauxFaim;
+        this.tauxSoif = tauxSoif;
+        this.tauxEnnui = tauxEnnui;
+        this.tauxFatigue = tauxFatigue;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public int getTauxFaim() {
+        return tauxFaim;
+    }
+
+    public int getTauxSoif() {
+        return tauxSoif;
+    }
+
+    public int getTauxEnnui() {
+        return tauxEnnui;
+    }
+
+    public int getTauxFatigue() {
+        return tauxFatigue;
+    }
 }

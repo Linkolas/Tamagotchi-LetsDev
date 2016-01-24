@@ -5,6 +5,9 @@
  */
 package tamagotchi.letsdev.ui;
 
+import java.util.ArrayList;
+import javax.swing.JButton;
+
 /**
  *
  * @author Nicolas
@@ -12,6 +15,7 @@ package tamagotchi.letsdev.ui;
 public class Fenetre extends javax.swing.JFrame {
     
     private ActionsBoutons actions;
+    private ArrayList<JButton> boutons;
     
     /**
      * Creates new form Fenetre
@@ -19,6 +23,8 @@ public class Fenetre extends javax.swing.JFrame {
     public Fenetre() {
         initComponents();
         initFenetre();
+        
+        actions = new ActionsBoutons();
     }
 
     /**
@@ -60,7 +66,6 @@ public class Fenetre extends javax.swing.JFrame {
         setFocusable(false);
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(440, 440));
-        setPreferredSize(new java.awt.Dimension(430, 430));
         setResizable(false);
 
         jPanelEtats.setBackground(new java.awt.Color(250, 250, 250));
@@ -339,6 +344,36 @@ public class Fenetre extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         setVisible(true);
+        
+        
+        boutons.add(jButtonCaliner);
+        boutons.add(jButtonDormir);
+        boutons.add(jButtonExplorer);
+        boutons.add(jButtonJouer);
+        boutons.add(jButtonNourrir);
+        boutons.add(jButtonSauver);
     }
-
+    
+    
+    public boolean griserBoutons(boolean bool) {
+        for(JButton jb: boutons) {
+            jb.setEnabled(bool);
+        }
+        
+        return true;
+    }
+    
+    public int ajouterScore(int nb) {
+        int current = Integer.parseInt(jLabelScore.getText());
+        int updated = current + nb;
+        
+        jLabelScore.setText("" + updated);
+        
+        return getScore();
+    }
+    
+    public int getScore() {
+        
+        return Integer.parseInt(jLabelScore.getText());
+    }
 }
