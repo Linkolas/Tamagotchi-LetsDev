@@ -17,4 +17,38 @@ public class Tamagotchi implements Serializable {
     private String nom;
     private Date dateNaissance;
     private Date dateMort;
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public Date getDateMort() {
+        return dateMort;
+    }
+
+    public void setDateMort(Date dateMort) {
+        this.dateMort = dateMort;
+    }
+    
+    
 }

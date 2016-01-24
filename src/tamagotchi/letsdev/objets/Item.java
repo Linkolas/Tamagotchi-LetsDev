@@ -26,4 +26,12 @@ public abstract class Item implements Serializable {
             gainSoif,
             gainEnnui,
             gainFatigue;
+
+    public Item(int id, String nom, String image) {
+        this.id = id;
+        this.nom = nom;
+        this.image = image;
+    }
+    
+    
 }

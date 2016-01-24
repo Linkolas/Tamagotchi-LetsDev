@@ -10,5 +10,9 @@ package tamagotchi.letsdev.objets;
  * @author Nicolas
  */
 public abstract class Nourriture extends Item {
+
+    public Nourriture(int id, String nom, String image) {
+        super(id, nom, image);
+    }
     
 }

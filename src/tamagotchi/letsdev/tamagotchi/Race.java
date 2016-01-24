@@ -13,18 +13,24 @@ public class Race {
     private String nom;
     private String image;
     private int
+            id,
             tauxFaim,
             tauxSoif,
             tauxEnnui,
             tauxFatigue;
 
-    public Race(String nom, String image, int tauxFaim, int tauxSoif, int tauxEnnui, int tauxFatigue) {
+    public Race(int id, String nom, String image, int tauxFaim, int tauxSoif, int tauxEnnui, int tauxFatigue) {
+        this.id = id;
         this.nom = nom;
         this.image = image;
         this.tauxFaim = tauxFaim;
         this.tauxSoif = tauxSoif;
         this.tauxEnnui = tauxEnnui;
         this.tauxFatigue = tauxFatigue;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNom() {

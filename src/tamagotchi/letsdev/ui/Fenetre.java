@@ -5,8 +5,15 @@
  */
 package tamagotchi.letsdev.ui;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import tamagotchi.letsdev.database.Requeteur;
+import tamagotchi.letsdev.objets.*;
+import tamagotchi.letsdev.tamagotchi.*;
 
 /**
  *
@@ -15,13 +22,17 @@ import javax.swing.JButton;
 public class Fenetre extends javax.swing.JFrame {
     
     private ActionsBoutons actions;
-    private ArrayList<JButton> boutons;
+    private List<JButton> boutons;
+    private List<Item> items;
+    private List<Race> races;
     
     /**
      * Creates new form Fenetre
      */
     public Fenetre() {
         initComponents();
+        initFromBDD();
+        loadData();
         initFenetre();
         
         actions = new ActionsBoutons();
@@ -345,7 +356,7 @@ public class Fenetre extends javax.swing.JFrame {
         
         setVisible(true);
         
-        
+        boutons = new ArrayList<>();
         boutons.add(jButtonCaliner);
         boutons.add(jButtonDormir);
         boutons.add(jButtonExplorer);
@@ -375,5 +386,36 @@ public class Fenetre extends javax.swing.JFrame {
     public int getScore() {
         
         return Integer.parseInt(jLabelScore.getText());
+    }
+
+    private void initFromBDD() {
+        try {
+            Requeteur rq = new Requeteur();
+            
+            items = rq.getItems();
+            races = rq.getRaces();
+            
+        } catch (ClassNotFoundException ex) {
+            showError("Erreur base de données", "Le pilote Derby n'est pas disponible.");
+        } catch (SQLException ex) {
+            showError("Erreur base de données", "Une erreur SQL n°"+ex.getErrorCode()+" s'est produite.");
+        }
+    }
+    
+    private void showError(String titre, Object text) {
+        JOptionPane.showMessageDialog(null, text, titre, ERROR_MESSAGE);
+        this.dispose();
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public List<Race> getRaces() {
+        return races;
+    }
+
+    private void loadData() {
+        // code pour charger les données.
     }
 }

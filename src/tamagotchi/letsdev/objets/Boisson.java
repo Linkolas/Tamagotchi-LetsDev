@@ -10,5 +10,9 @@ package tamagotchi.letsdev.objets;
  * @author Nicolas
  */
 public class Boisson extends Nourriture {
+
+    public Boisson(int id, String nom, String image) {
+        super(id, nom, image);
+    }
     
 }

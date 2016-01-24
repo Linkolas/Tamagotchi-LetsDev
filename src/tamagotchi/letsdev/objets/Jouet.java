@@ -9,9 +9,9 @@ package tamagotchi.letsdev.objets;
  *
  * @author Nicolas
  */
-public class MiamMiam extends Nourriture {
+public class Jouet extends Item {
 
-    public MiamMiam(int id, String nom, String image) {
+    public Jouet(int id, String nom, String image) {
         super(id, nom, image);
     }
     
