@@ -517,4 +517,24 @@ public class Fenetre extends javax.swing.JFrame {
         }
         
     }
+
+    public Tamagotchi getTamagotchi() {
+        return tama;
+    }
+
+    public JProgressBar getjProgressBarEnnui() {
+        return jProgressBarEnnui;
+    }
+
+    public JProgressBar getjProgressBarFaim() {
+        return jProgressBarFaim;
+    }
+
+    public JProgressBar getjProgressBarFatigue() {
+        return jProgressBarFatigue;
+    }
+
+    public JProgressBar getjProgressBarSoif() {
+        return jProgressBarSoif;
+    }
 }
