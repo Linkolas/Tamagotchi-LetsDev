@@ -8,6 +8,8 @@ package tamagotchi.letsdev.ui;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -25,6 +27,7 @@ public class Fenetre extends javax.swing.JFrame {
     private List<JButton> boutons;
     private List<Item> items;
     private List<Race> races;
+    private Tamagotchi tama;
     
     /**
      * Creates new form Fenetre
@@ -67,7 +70,8 @@ public class Fenetre extends javax.swing.JFrame {
         jButtonJouer = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabelScore = new javax.swing.JLabel();
-        jPanelJeu = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jPanelJeuFond = new javax.swing.JPanel();
         jLabelInfoJeu = new javax.swing.JLabel();
         jLabelImageJeu = new javax.swing.JLabel();
 
@@ -181,7 +185,7 @@ public class Fenetre extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Amitié :");
 
-        jLabelScore.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,33 +234,65 @@ public class Fenetre extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelJeu.setBackground(new java.awt.Color(245, 245, 245));
+        jPanelJeuFond.setBackground(new java.awt.Color(245, 245, 245));
+        jPanelJeuFond.setPreferredSize(new java.awt.Dimension(410, 185));
+
+        javax.swing.GroupLayout jPanelJeuFondLayout = new javax.swing.GroupLayout(jPanelJeuFond);
+        jPanelJeuFond.setLayout(jPanelJeuFondLayout);
+        jPanelJeuFondLayout.setHorizontalGroup(
+            jPanelJeuFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
+        jPanelJeuFondLayout.setVerticalGroup(
+            jPanelJeuFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 185, Short.MAX_VALUE)
+        );
 
         jLabelInfoJeu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelInfoJeu.setText("Some text goes here!");
 
         jLabelImageJeu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelImageJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/baudrive.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanelJeuLayout = new javax.swing.GroupLayout(jPanelJeu);
-        jPanelJeu.setLayout(jPanelJeuLayout);
-        jPanelJeuLayout.setHorizontalGroup(
-            jPanelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelJeuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelImageJeu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelInfoJeu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabelInfoJeu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelJeuFond, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelImageJeu, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-        jPanelJeuLayout.setVerticalGroup(
-            jPanelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJeuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelImageJeu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(jLabelInfoJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(jPanelJeuFond, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelImageJeu, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addGap(12, 12, 12)))
         );
+        jLayeredPane1.setLayer(jPanelJeuFond, 1);
+        jLayeredPane1.setLayer(jLabelInfoJeu, javax.swing.JLayeredPane.POPUP_LAYER);
+        jLayeredPane1.setLayer(jLabelImageJeu, javax.swing.JLayeredPane.PALETTE_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,21 +302,18 @@ public class Fenetre extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelEtats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelJeu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(63, 63, 63))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanelJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanelEtats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -340,10 +373,11 @@ public class Fenetre extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelImageJeu;
     private javax.swing.JLabel jLabelInfoJeu;
     private javax.swing.JLabel jLabelScore;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelEtats;
-    private javax.swing.JPanel jPanelJeu;
+    private javax.swing.JPanel jPanelJeuFond;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JProgressBar jProgressBarEnnui;
     private javax.swing.JProgressBar jProgressBarFaim;
@@ -363,6 +397,12 @@ public class Fenetre extends javax.swing.JFrame {
         boutons.add(jButtonJouer);
         boutons.add(jButtonNourrir);
         boutons.add(jButtonSauver);
+        
+        String img = tama.getRace().getImage();
+        if(!img.isEmpty()) {
+            Icon image = new ImageIcon(getClass().getResource(img));
+            jLabelImageJeu.setIcon(image);
+        }
     }
     
     
@@ -417,5 +457,16 @@ public class Fenetre extends javax.swing.JFrame {
 
     private void loadData() {
         // code pour charger les données.
+        
+        // TODO ; Charger
+        
+        
+        // si aucune save :
+        tama = new Tamagotchi(races);
+        
+        
+        // après :
+        jLabelScore.setText(String.valueOf(tama.getAmitie()));
+        
     }
 }
