@@ -13,6 +13,7 @@ public class Boisson extends Nourriture {
 
     public Boisson(int id, String nom, String image) {
         super(id, nom, image);
+            System.out.println("Coucou minou ! =D");
     }
     
 }
