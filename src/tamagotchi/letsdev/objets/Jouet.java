@@ -11,8 +11,5 @@ package tamagotchi.letsdev.objets;
  */
 public class Jouet extends Item {
 
-    public Jouet(int id, String nom, String image) {
-        super(id, nom, image);
-    }
     
 }
