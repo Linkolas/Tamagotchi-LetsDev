@@ -7,14 +7,13 @@ package tamagotchi.letsdev.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.*;
 import tamagotchi.letsdev.database.Requeteur;
+import tamagotchi.letsdev.etat.GestionEtats;
 import tamagotchi.letsdev.objets.*;
 import tamagotchi.letsdev.tamagotchi.*;
 
@@ -29,6 +28,7 @@ public class Fenetre extends javax.swing.JFrame {
     private List<Item> items;
     private List<Race> races;
     private Tamagotchi tama;
+    private GestionEtats gestEtats;
     
     /**
      * Creates new form Fenetre
@@ -40,7 +40,7 @@ public class Fenetre extends javax.swing.JFrame {
         loadData();
         
         setVisible(true);
-        actions = new ActionsBoutons();
+        actions = new ActionsBoutons(this);
     }
 
     /**
@@ -322,7 +322,7 @@ public class Fenetre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNourrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNourrirActionPerformed
-        // TODO add your handling code here:
+        actions.nourrir();
     }//GEN-LAST:event_jButtonNourrirActionPerformed
 
     /**
@@ -452,7 +452,7 @@ public class Fenetre extends javax.swing.JFrame {
     private void loadData() {
         // code pour charger les données.
         
-        
+        // TODO gereretats : creer
         boolean existant = false;
         if(existant) {
             // TODO ; Charger
