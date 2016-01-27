@@ -59,7 +59,6 @@ public class Tamagotchi implements Serializable {
             if(nombreActuelPossede>0)
             {
                 inventaire.replace(item, nombreActuelPossede-1);
-                    System.out.println("Coucoucoucoucoucuo");
             }
             else
             {
