@@ -42,10 +42,11 @@ public class Tamagotchi implements Serializable {
         race = races.get(rand);
         
         amitie = 0;
+        etat = new Etats(100, 100, 100, 100, dateNaissance);
         
     }
 
-    public Tamagotchi(Race race, String nom, Date dateNaissance) {
+    public Tamagotchi(Race race, String nom, Date dateNaissance, Etats etat) {
         this.race = race;
         this.nom = nom;
         this.dateNaissance = dateNaissance;
@@ -126,4 +127,14 @@ public class Tamagotchi implements Serializable {
     public void setAmitie(int amitie) {
         this.amitie = amitie;
     }
+
+    public Etats getEtat() {
+        return etat;
+    }
+
+    public Hashtable<Item, Integer> getInventaire() {
+        return inventaire;
+    }
+    
+    
 }

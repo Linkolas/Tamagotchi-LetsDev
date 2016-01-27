@@ -5,14 +5,15 @@
  */
 package tamagotchi.letsdev.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.*;
 import tamagotchi.letsdev.database.Requeteur;
 import tamagotchi.letsdev.objets.*;
 import tamagotchi.letsdev.tamagotchi.*;
@@ -34,10 +35,11 @@ public class Fenetre extends javax.swing.JFrame {
      */
     public Fenetre() {
         initComponents();
+        initFenetre();
         initFromBDD();
         loadData();
-        initFenetre();
         
+        setVisible(true);
         actions = new ActionsBoutons();
     }
 
@@ -105,10 +107,10 @@ public class Fenetre extends javax.swing.JFrame {
             .addGroup(jPanelEtatsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEtatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEtatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jProgressBarFaim, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
@@ -268,7 +270,7 @@ public class Fenetre extends javax.swing.JFrame {
                     .addComponent(jPanelJeuFond, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabelImageJeu, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                     .addContainerGap()))
@@ -388,8 +390,6 @@ public class Fenetre extends javax.swing.JFrame {
     private void initFenetre() {
         setLocationRelativeTo(null);
         
-        setVisible(true);
-        
         boutons = new ArrayList<>();
         boutons.add(jButtonCaliner);
         boutons.add(jButtonDormir);
@@ -397,18 +397,12 @@ public class Fenetre extends javax.swing.JFrame {
         boutons.add(jButtonJouer);
         boutons.add(jButtonNourrir);
         boutons.add(jButtonSauver);
-        
-        String img = tama.getRace().getImage();
-        if(!img.isEmpty()) {
-            Icon image = new ImageIcon(getClass().getResource(img));
-            jLabelImageJeu.setIcon(image);
-        }
     }
     
     
     public boolean griserBoutons(boolean bool) {
         for(JButton jb: boutons) {
-            jb.setEnabled(bool);
+            jb.setEnabled(!bool);
         }
         
         return true;
@@ -462,11 +456,55 @@ public class Fenetre extends javax.swing.JFrame {
         
         
         // si aucune save :
+        griserBoutons(true);
         tama = new Tamagotchi(races);
         
         
+        JLabel nameAsk = new JLabel("Nom :");
+        JTextField nameArea = new JTextField();
+        JButton nameConfirm = new JButton("OK");
+        
+        jLayeredPane1.add(nameAsk);
+        jLayeredPane1.add(nameArea);
+        jLayeredPane1.add(nameConfirm);
+        jLayeredPane1.setLayer(nameAsk,     10);
+        jLayeredPane1.setLayer(nameArea,    10);
+        jLayeredPane1.setLayer(nameConfirm, 10);
+        nameAsk.setSize(100, 20);
+        nameArea.setSize(100, 20);
+        nameConfirm.setSize(60, 19);
+        nameAsk.setLocation(100, 50);
+        nameArea.setLocation(150, 50);
+        nameConfirm.setLocation(250, 50);
+        
+        class LocalListener implements ActionListener {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tama.setNom(nameArea.getText());
+                griserBoutons(false);
+                
+                jLayeredPane1.remove(nameAsk);
+                jLayeredPane1.remove(nameArea);
+                jLayeredPane1.remove(nameConfirm);
+                
+                jLayeredPane1.validate();
+                jLayeredPane1.repaint();
+            }
+            
+        }
+        
+        nameConfirm.addActionListener(new LocalListener());
+        
+    
+        
         // après :
         jLabelScore.setText(String.valueOf(tama.getAmitie()));
+        String img = tama.getRace().getImage();
+        if(!img.isEmpty()) {
+            Icon image = new ImageIcon(getClass().getResource(img));
+            jLabelImageJeu.setIcon(image);
+        }
         
     }
 }
