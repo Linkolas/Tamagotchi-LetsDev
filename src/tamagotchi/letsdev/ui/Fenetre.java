@@ -425,7 +425,7 @@ public class Fenetre extends javax.swing.JFrame {
     
     public int getScore() {
         
-        return Integer.parseInt(jLabelScore.getText());
+        return tama.getAmitie();
     }
 
     private void initFromBDD() {
