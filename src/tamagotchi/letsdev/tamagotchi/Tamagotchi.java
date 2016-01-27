@@ -27,10 +27,31 @@ public class Tamagotchi implements Serializable {
     private String nom;
     private Date dateNaissance;
     private Date dateMort;
+    private int amitie;
     
     private Etats etat;
     
     private Hashtable<Item, Integer> inventaire;
+
+    public Tamagotchi(List<Race> races) {
+        
+        dateNaissance = new Date(new java.util.Date().getTime());
+        
+        int size = races.size();
+        int rand = (int) (Math.random() * size);
+        race = races.get(rand);
+        
+        amitie = 0;
+        
+    }
+
+    public Tamagotchi(Race race, String nom, Date dateNaissance) {
+        this.race = race;
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
+        
+        amitie = 0;
+    }
     
     public void chargerInventaire()
     {
