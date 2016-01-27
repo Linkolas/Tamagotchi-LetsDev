@@ -452,51 +452,61 @@ public class Fenetre extends javax.swing.JFrame {
     private void loadData() {
         // code pour charger les données.
         
-        // TODO ; Charger
         
-        
-        // si aucune save :
-        griserBoutons(true);
-        tama = new Tamagotchi(races);
-        
-        
-        JLabel nameAsk = new JLabel("Nom :");
-        JTextField nameArea = new JTextField();
-        JButton nameConfirm = new JButton("OK");
-        
-        jLayeredPane1.add(nameAsk);
-        jLayeredPane1.add(nameArea);
-        jLayeredPane1.add(nameConfirm);
-        jLayeredPane1.setLayer(nameAsk,     10);
-        jLayeredPane1.setLayer(nameArea,    10);
-        jLayeredPane1.setLayer(nameConfirm, 10);
-        nameAsk.setSize(100, 20);
-        nameArea.setSize(100, 20);
-        nameConfirm.setSize(60, 19);
-        nameAsk.setLocation(100, 50);
-        nameArea.setLocation(150, 50);
-        nameConfirm.setLocation(250, 50);
-        
-        class LocalListener implements ActionListener {
+        boolean existant = false;
+        if(existant) {
+            // TODO ; Charger
+            // TODO gererEtats activer
             
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                tama.setNom(nameArea.getText());
-                griserBoutons(false);
-                
-                jLayeredPane1.remove(nameAsk);
-                jLayeredPane1.remove(nameArea);
-                jLayeredPane1.remove(nameConfirm);
-                
-                jLayeredPane1.validate();
-                jLayeredPane1.repaint();
+            setTitle(getTitle()+" "+tama.getNom());
+            
+        } else {
+        
+            // si aucune save :
+            griserBoutons(true);
+            tama = new Tamagotchi(races);
+
+
+            JLabel nameAsk = new JLabel("Nom :");
+            JTextField nameArea = new JTextField();
+            JButton nameConfirm = new JButton("OK");
+
+            jLayeredPane1.add(nameAsk);
+            jLayeredPane1.add(nameArea);
+            jLayeredPane1.add(nameConfirm);
+            jLayeredPane1.setLayer(nameAsk,     10);
+            jLayeredPane1.setLayer(nameArea,    10);
+            jLayeredPane1.setLayer(nameConfirm, 10);
+            nameAsk.setSize(100, 20);
+            nameArea.setSize(100, 20);
+            nameConfirm.setSize(60, 19);
+            nameAsk.setLocation(100, 50);
+            nameArea.setLocation(150, 50);
+            nameConfirm.setLocation(250, 50);
+
+            class LocalListener implements ActionListener {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    tama.setNom(nameArea.getText());
+                    griserBoutons(false);
+
+                    setTitle(getTitle()+" "+tama.getNom());
+
+                    jLayeredPane1.remove(nameAsk);
+                    jLayeredPane1.remove(nameArea);
+                    jLayeredPane1.remove(nameConfirm);
+
+                    jLayeredPane1.validate();
+                    jLayeredPane1.repaint();
+                    // TODO : gererEtats.activer
+                }
+
             }
-            
+
+            nameConfirm.addActionListener(new LocalListener());
+
         }
-        
-        nameConfirm.addActionListener(new LocalListener());
-        
-    
         
         // après :
         jLabelScore.setText(String.valueOf(tama.getAmitie()));
