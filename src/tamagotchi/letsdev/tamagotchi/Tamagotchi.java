@@ -7,6 +7,15 @@ package tamagotchi.letsdev.tamagotchi;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tamagotchi.letsdev.objets.Item;
+import tamagotchi.letsdev.database.Requeteur;
 
 /**
  *
@@ -17,7 +26,32 @@ public class Tamagotchi implements Serializable {
     private String nom;
     private Date dateNaissance;
     private Date dateMort;
+    
+    private Hashtable<Item, Integer> inventaire;
 
+    public void chargerInventaire()
+    {
+            try
+            {
+                    //On récupère la liste d'items
+                    Requeteur requeteur = new Requeteur();
+                    List<Item> listeItems=new ArrayList<Item>();
+                    listeItems=requeteur.getItems();
+                    
+                    //Et on remplit l'inventaire objet par objet
+                    for(int i=0;i<listeItems.size();i++)
+                    {
+                            inventaire.put(listeItems.get(i),0);
+                    }
+            }
+            catch (ClassNotFoundException | SQLException ex)
+            {
+                    Logger.getLogger(Tamagotchi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+    }
+    
     public Race getRace() {
         return race;
     }
