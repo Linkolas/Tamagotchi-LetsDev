@@ -5,14 +5,19 @@
  */
 package tamagotchi.letsdev.objets;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author Nicolas
  */
 public class MiamMiam extends Nourriture {
 
-    public MiamMiam(int id, String nom, String image) {
-        super(id, nom, image);
-    }
+        public MiamMiam(boolean trouvable, int rarete, int id, Time tempsConso, String nom, String image, int nbPossede, int gainFaim, int gainSoif, int gainEnnui, int gainFatigue)
+        {
+                super(trouvable, rarete, id, tempsConso, nom, image, nbPossede, gainFaim, gainSoif, gainEnnui, gainFatigue);
+        }
+
     
 }

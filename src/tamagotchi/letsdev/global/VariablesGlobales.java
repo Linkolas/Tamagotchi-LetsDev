@@ -10,6 +10,7 @@ package tamagotchi.letsdev.global;
  * @author Nicolas
  */
 public class VariablesGlobales {
+    //Les variables représentent la perte de points par minute
     private static final int 
             perteFaim       = 2, 
             perteSoif       = 3, 

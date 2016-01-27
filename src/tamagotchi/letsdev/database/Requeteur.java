@@ -88,14 +88,14 @@ public class Requeteur {
             Item item;
             switch(type) {
                 case 1:
-                    item = new MiamMiam(id, nom, image);
+                    item = new MiamMiam(trouvable, rarete, id, tempsConso, nom, image, 0, gainFaim, gainSoif, gainEnnui, gainFatigue);
                     break;
                 case 2:
-                    item = new Boisson(id, nom, image);
+                    item = new Boisson(trouvable, rarete, id, tempsConso, nom, image, 0, gainFaim, gainSoif, gainEnnui, gainFatigue);
                     break;
                 case 3:
                 default:
-                    item = new Jouet(id, nom, image);
+                    item = new Jouet(trouvable, rarete, id, tempsConso, nom, image, 0, gainFaim, gainSoif, gainEnnui, gainFatigue);
                     break;
             }
             

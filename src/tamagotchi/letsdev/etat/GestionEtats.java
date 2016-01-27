@@ -5,6 +5,11 @@
  */
 package tamagotchi.letsdev.etat;
 
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author Nicolas
@@ -15,6 +20,10 @@ public class GestionEtats extends Thread {
     public GestionEtats(Etats etat) {
         this.etat = etat;
     }
+    
+    private Date dateActuelle;
+    private long dateMilliActuelle;
+    private long dateMilliFinOccupation;
     
     
     /*
@@ -27,7 +36,90 @@ public class GestionEtats extends Thread {
     @Override
     public void run() {
         
+        while(true)
+        {
+            //On recupere la date actuelle en ms puis celle de fin d'occupation
+            dateActuelle = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            dateMilliActuelle = dateActuelle.getTime();
+            dateMilliFinOccupation = new java.sql.Date(etat.getDateFinOccupation().getTime()).getTime();
+            
+            //On teste la fin d'occupation
+            if(dateMilliActuelle > dateMilliFinOccupation)
+            {
+                //Alors on a fini la dernière occupation
+                int delay = 0; // pas de retard avant le début du compteur
+                int period = 1000; // repeat every sec.
+                Timer timer = new Timer();
+                timer.scheduleAtFixedRate(new TimerTask()
+                {
+                    int count = 0;
+                    @Override
+                    public void run()
+                    {
+                       // Your code
+                        count++;
+                        System.out.println(count);
+
+
+
+                    }
+
+                }, delay, period);
+                
+                
+            }
+            else
+            {
+                //Alors on est encore occupé
+                
+                
+                
+            }
+            
+        }
         
         
+    }
+    
+    public static void main(String[] args)
+    {
+        /*long dateMilli1;
+        long dateMilli2;
+        Date dateActuelle;
+        dateActuelle = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        dateMilli1=dateActuelle.getTime();
+        for(int i=0;i<999999999;i++)
+        {
+            for(int j=0;j<999999999;j++)
+            {
+               
+            }
+        }
+        Date date2;
+        date2=new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        dateMilli2=date2.getTime();
+        System.out.println(dateActuelle.toString());
+        System.out.println(dateMilli1-dateMilli2);*/
+        
+        //----------------------------------------------------------
+        
+        /*int delay = 10000; // delay for 5 sec.
+        int period = 1000; // repeat every sec.
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask()
+        {
+            int count = 0;
+            @Override
+            public void run()
+            {
+               // Your code
+                count++;
+                System.out.println(count);
+                
+
+
+            }
+            
+        }, delay, period);*/
     }
 }
