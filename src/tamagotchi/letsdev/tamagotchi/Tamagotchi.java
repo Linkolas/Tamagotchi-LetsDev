@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tamagotchi.letsdev.objets.Item;
 import tamagotchi.letsdev.database.Requeteur;
+import tamagotchi.letsdev.etat.Etats;
 
 /**
  *
@@ -27,8 +28,10 @@ public class Tamagotchi implements Serializable {
     private Date dateNaissance;
     private Date dateMort;
     
+    private Etats etat;
+    
     private Hashtable<Item, Integer> inventaire;
-
+    
     public void chargerInventaire()
     {
             try
@@ -48,8 +51,20 @@ public class Tamagotchi implements Serializable {
             {
                     Logger.getLogger(Tamagotchi.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+    }
+    
+    public void utiliserItem(Item item)
+    {
+            int nombreActuelPossede=inventaire.get(item);
+            if(nombreActuelPossede>0)
+            {
+                inventaire.replace(item, nombreActuelPossede-1);
+                
+            }
+            else
+            {
+                    System.out.println("Vous ne pouvez pas utiliser d'objets que vous n'avez pas !");
+            }
     }
     
     public Race getRace() {

@@ -7,6 +7,8 @@ package tamagotchi.letsdev.objets;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Hashtable;
+import tamagotchi.letsdev.objets.Item;
 
 /**
  *
@@ -21,17 +23,11 @@ public abstract class Item implements Serializable {
     private String image;
     private int nbPossede;
     
-    private int 
-            gainFaim, 
-            gainSoif,
-            gainEnnui,
-            gainFatigue;
-
-    public Item(int id, String nom, String image) {
-        this.id = id;
-        this.nom = nom;
-        this.image = image;
-    }
+    private int gainFaim;
+    private int gainSoif;
+    private int gainEnnui;
+    private int gainFatigue;
     
+  
     
 }
