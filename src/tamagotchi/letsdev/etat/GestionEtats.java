@@ -47,7 +47,7 @@ public class GestionEtats extends Thread {
             if(dateMilliActuelle > dateMilliFinOccupation)
             {
                 //Alors on a fini la dernière occupation
-                int delay = 10000; // delay for 5 sec.
+                int delay = 0; // pas de retard avant le début du compteur
                 int period = 1000; // repeat every sec.
                 Timer timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask()
