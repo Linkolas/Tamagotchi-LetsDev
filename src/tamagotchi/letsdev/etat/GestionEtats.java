@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import tamagotchi.letsdev.ui.Fenetre;
 
 /**
  *
@@ -16,14 +17,26 @@ import java.util.TimerTask;
  */
 public class GestionEtats extends Thread {
     private Etats etat;
+    private Fenetre fenetre;
 
-    public GestionEtats(Etats etat) {
+    public GestionEtats(Etats etat, Fenetre fenetre) {
         this.etat = etat;
+        this.fenetre = fenetre;
     }
     
     private Date dateActuelle;
     private long dateMilliActuelle;
     private long dateMilliFinOccupation;
+    
+    private int perteFaim = 5;
+    private int perteSoif = 5;
+    private int perteEnnui = 5;
+    private int perteFatigue = 5;
+    
+    private double nivActuelFaim;
+    private double nivActuelSoif;
+    private double nivActuelEnnui;
+    private double nivActuelFatigue;
     
     
     /*
@@ -56,11 +69,16 @@ public class GestionEtats extends Thread {
                     @Override
                     public void run()
                     {
-                       // Your code
-                        count++;
-                        System.out.println(count);
-
-
+                        //Prendre la constante qui définit la perte de points par minute et la diviser par 60
+                        //Prendre le nb de points actuel et lui retirer les points obtenus juste au dessus (faire une maj)
+                        
+                        nivActuelFaim = etat.getFaim() - ((fenetre.getTamagotchi().getRace().getTauxFaim())/100)*(perteFaim/60);
+                        nivActuelSoif = etat.getSoif() - ((fenetre.getTamagotchi().getRace().getTauxSoif())/100)*(perteSoif/60);
+                        nivActuelEnnui = etat.getEnnui() - ((fenetre.getTamagotchi().getRace().getTauxEnnui())/100)*(perteEnnui/60);
+                        nivActuelFatigue = etat.getFatigue() - ((fenetre.getTamagotchi().getRace().getTauxFatigue())/100)*(perteFatigue/60);
+                        
+                        //Mettre à jour les barres d'état
+                        
 
                     }
 
