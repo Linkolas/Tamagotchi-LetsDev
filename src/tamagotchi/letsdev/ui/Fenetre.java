@@ -8,6 +8,7 @@ package tamagotchi.letsdev.ui;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -518,22 +519,29 @@ public class Fenetre extends javax.swing.JFrame {
         // après :
         jLabelScore.setText(String.valueOf(tama.getAmitie()));
         String img = tama.getRace().getImage();
-        if(!img.isEmpty()) {
-            ImageIcon image = new ImageIcon(getClass().getResource(img));
+        
+        if(!img.isEmpty() && new File(getClass().getResource(img).getPath()).isFile()) {
             
+            ImageIcon image = new ImageIcon(getClass().getResource(img));
+
             boolean tropLarge = image.getIconWidth() > jLabelImageJeu.getWidth();
             boolean tropGrand = image.getIconHeight() > jLabelImageJeu.getHeight();
-            
-            
+
+
             if(tropLarge) {
                 image = new ImageIcon(image.getImage().getScaledInstance(jLabelImageJeu.getWidth(), -1, Image.SCALE_DEFAULT));
             }
             if(tropGrand) {
                 image = new ImageIcon(image.getImage().getScaledInstance(-1, jLabelImageJeu.getHeight(), Image.SCALE_SMOOTH));
             }
-            
+
             jLabelImageJeu.setIcon(image);
+
+            
+        } else {
+            System.out.println("IMAGE PAS OK : "+getClass().getResource(img).getPath());
         }
+        
         
     }
 
