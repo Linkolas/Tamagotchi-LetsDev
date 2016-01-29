@@ -13,7 +13,7 @@ import java.sql.Date;
  * @author Nicolas
  */
 public class Etats implements Serializable {
-    private int 
+    private double 
             faim, 
             soif, 
             ennui, 
@@ -23,7 +23,7 @@ public class Etats implements Serializable {
     private Date dateFinOccupation;
     private String occupation;
 
-    public Etats(int faim, int soif, int ennui, int fatigue, Date date) {
+    public Etats(double faim, double soif, double ennui, double fatigue, Date date) {
         this.faim = faim;
         this.soif = soif;
         this.ennui = ennui;
@@ -31,42 +31,44 @@ public class Etats implements Serializable {
         this.date = date;
     }
 
-    public int getFaim()
+    
+
+    public double getFaim()
     {
         return faim;
     }
 
-    public void setFaim(int faim)
+    public void setFaim(double faim)
     {
         this.faim = faim;
     }
 
-    public int getSoif()
+    public double getSoif()
     {
         return soif;
     }
 
-    public void setSoif(int soif)
+    public void setSoif(double soif)
     {
         this.soif = soif;
     }
 
-    public int getEnnui()
+    public double getEnnui()
     {
         return ennui;
     }
 
-    public void setEnnui(int ennui)
+    public void setEnnui(double ennui)
     {
         this.ennui = ennui;
     }
 
-    public int getFatigue()
+    public double getFatigue()
     {
         return fatigue;
     }
 
-    public void setFatigue(int fatigue)
+    public void setFatigue(double fatigue)
     {
         this.fatigue = fatigue;
     }
