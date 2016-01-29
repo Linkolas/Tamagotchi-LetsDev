@@ -520,24 +520,23 @@ public class Fenetre extends javax.swing.JFrame {
         jLabelScore.setText(String.valueOf(tama.getAmitie()));
         String img = tama.getRace().getImage();
         
-        if(new File(getClass().getResource(img).getPath()).isFile()) {
+        if(!img.isEmpty() && new File(getClass().getResource(img).getPath()).isFile()) {
             
-            if(!img.isEmpty()) {
-                ImageIcon image = new ImageIcon(getClass().getResource(img));
+            ImageIcon image = new ImageIcon(getClass().getResource(img));
 
-                boolean tropLarge = image.getIconWidth() > jLabelImageJeu.getWidth();
-                boolean tropGrand = image.getIconHeight() > jLabelImageJeu.getHeight();
+            boolean tropLarge = image.getIconWidth() > jLabelImageJeu.getWidth();
+            boolean tropGrand = image.getIconHeight() > jLabelImageJeu.getHeight();
 
 
-                if(tropLarge) {
-                    image = new ImageIcon(image.getImage().getScaledInstance(jLabelImageJeu.getWidth(), -1, Image.SCALE_DEFAULT));
-                }
-                if(tropGrand) {
-                    image = new ImageIcon(image.getImage().getScaledInstance(-1, jLabelImageJeu.getHeight(), Image.SCALE_SMOOTH));
-                }
-
-                jLabelImageJeu.setIcon(image);
+            if(tropLarge) {
+                image = new ImageIcon(image.getImage().getScaledInstance(jLabelImageJeu.getWidth(), -1, Image.SCALE_DEFAULT));
             }
+            if(tropGrand) {
+                image = new ImageIcon(image.getImage().getScaledInstance(-1, jLabelImageJeu.getHeight(), Image.SCALE_SMOOTH));
+            }
+
+            jLabelImageJeu.setIcon(image);
+
             
         } else {
             System.out.println("IMAGE PAS OK : "+getClass().getResource(img).getPath());
