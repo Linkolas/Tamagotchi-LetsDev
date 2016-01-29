@@ -43,7 +43,17 @@ public abstract class Item implements Serializable {
                 this.gainEnnui = gainEnnui;
                 this.gainFatigue = gainFatigue;
         }
-    
+
+        public int getNbPossede()
+        {
+                return nbPossede;
+        }
+
+        public void setNbPossede(int nbPossede)
+        {
+                this.nbPossede = nbPossede;
+        }
+        
   
     
 }
