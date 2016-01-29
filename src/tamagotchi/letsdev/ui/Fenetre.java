@@ -51,7 +51,8 @@ public class Fenetre extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanelEtats = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -143,8 +144,10 @@ public class Fenetre extends javax.swing.JFrame {
         );
 
         jButtonNourrir.setText("Nourrir");
-        jButtonNourrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonNourrir.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonNourrirActionPerformed(evt);
             }
         });

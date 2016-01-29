@@ -66,20 +66,23 @@ public class GestionEtats extends Thread {
                     public void run()
                     {
                         //Prendre la constante qui définit la perte de points par minute et la diviser par 60
-                        //Prendre le nb de points actuel et lui retirer les points obtenus juste au dessus (faire une maj)
-                        
+                        //Prendre le nb de points actuel et lui retirer les points chaque seconde
                         nivActuelFaim = etat.getFaim() - ((fenetre.getTamagotchi().getRace().getTauxFaim())/100)*(VariablesGlobales.getPerteFaim()/60);
                         nivActuelSoif = etat.getSoif() - ((fenetre.getTamagotchi().getRace().getTauxSoif())/100)*(VariablesGlobales.getPerteSoif()/60);
                         nivActuelEnnui = etat.getEnnui() - ((fenetre.getTamagotchi().getRace().getTauxEnnui())/100)*(VariablesGlobales.getPerteEnnui()/60);
                         nivActuelFatigue = etat.getFatigue() - ((fenetre.getTamagotchi().getRace().getTauxFatigue())/100)*(VariablesGlobales.getPerteFatigue()/60);
                         
                         //faire le set de la faim/soif...
-                        
+                        etat.setFaim(nivActuelFaim);
+                        etat.setSoif(nivActuelSoif);
+                        etat.setEnnui(nivActuelEnnui);
+                        etat.setFatigue(nivActuelFatigue);
                         
                         //Mettre à jour les barres d'état
-                        
-                        
-
+                        fenetre.getjProgressBarFaim().setValue((int)etat.getFaim());
+                        fenetre.getjProgressBarSoif().setValue((int)etat.getSoif());
+                        fenetre.getjProgressBarEnnui().setValue((int)etat.getEnnui());
+                        fenetre.getjProgressBarFatigue().setValue((int)etat.getFatigue());
                     }
 
                 }, delay, period);
@@ -88,10 +91,8 @@ public class GestionEtats extends Thread {
             }
             else
             {
-                //Alors on est encore occupé
-                
-                
-                
+                //Alors le tamagotchi est encore occupé
+                //Donc on ne touche pas aux états
             }
             
         }
