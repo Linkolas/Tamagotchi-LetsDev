@@ -448,8 +448,7 @@ public class Fenetre extends javax.swing.JFrame {
         return items;
     }
 
-    public List<Race> getRaces() 
-    {
+    public List<Race> getRaces() {
         return races;
     }
 
