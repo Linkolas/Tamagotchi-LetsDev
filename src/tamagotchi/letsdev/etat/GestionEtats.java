@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import tamagotchi.letsdev.global.VariablesGlobales;
 import tamagotchi.letsdev.ui.Fenetre;
 
 /**
@@ -27,11 +28,6 @@ public class GestionEtats extends Thread {
     private Date dateActuelle;
     private long dateMilliActuelle;
     private long dateMilliFinOccupation;
-    
-    private int perteFaim = 5;
-    private int perteSoif = 5;
-    private int perteEnnui = 5;
-    private int perteFatigue = 5;
     
     private double nivActuelFaim;
     private double nivActuelSoif;
@@ -72,12 +68,16 @@ public class GestionEtats extends Thread {
                         //Prendre la constante qui définit la perte de points par minute et la diviser par 60
                         //Prendre le nb de points actuel et lui retirer les points obtenus juste au dessus (faire une maj)
                         
-                        nivActuelFaim = etat.getFaim() - ((fenetre.getTamagotchi().getRace().getTauxFaim())/100)*(perteFaim/60);
-                        nivActuelSoif = etat.getSoif() - ((fenetre.getTamagotchi().getRace().getTauxSoif())/100)*(perteSoif/60);
-                        nivActuelEnnui = etat.getEnnui() - ((fenetre.getTamagotchi().getRace().getTauxEnnui())/100)*(perteEnnui/60);
-                        nivActuelFatigue = etat.getFatigue() - ((fenetre.getTamagotchi().getRace().getTauxFatigue())/100)*(perteFatigue/60);
+                        nivActuelFaim = etat.getFaim() - ((fenetre.getTamagotchi().getRace().getTauxFaim())/100)*(VariablesGlobales.getPerteFaim()/60);
+                        nivActuelSoif = etat.getSoif() - ((fenetre.getTamagotchi().getRace().getTauxSoif())/100)*(VariablesGlobales.getPerteSoif()/60);
+                        nivActuelEnnui = etat.getEnnui() - ((fenetre.getTamagotchi().getRace().getTauxEnnui())/100)*(VariablesGlobales.getPerteEnnui()/60);
+                        nivActuelFatigue = etat.getFatigue() - ((fenetre.getTamagotchi().getRace().getTauxFatigue())/100)*(VariablesGlobales.getPerteFatigue()/60);
+                        
+                        //faire le set de la faim/soif...
+                        
                         
                         //Mettre à jour les barres d'état
+                        
                         
 
                     }
