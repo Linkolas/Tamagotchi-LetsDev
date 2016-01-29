@@ -31,7 +31,7 @@ public class Tamagotchi implements Serializable {
     
     private Etats etat;
     
-    private Hashtable<Item, Integer> inventaire;
+    private List<Item> inventaire;
 
     public Tamagotchi(List<Race> races) {
         
@@ -66,7 +66,7 @@ public class Tamagotchi implements Serializable {
                     //Et on remplit l'inventaire objet par objet
                     for(int i=0;i<listeItems.size();i++)
                     {
-                            inventaire.put(listeItems.get(i),0);
+                            inventaire.add(listeItems.get(i));
                     }
             }
             catch (ClassNotFoundException | SQLException ex)
@@ -77,10 +77,10 @@ public class Tamagotchi implements Serializable {
     
     public void utiliserItem(Item item)
     {
-            int nombreActuelPossede=inventaire.get(item);
+            int nombreActuelPossede=inventaire.get(inventaire.indexOf(item)).getNbPossede();
             if(nombreActuelPossede>0)
             {
-                inventaire.replace(item, nombreActuelPossede-1);
+                inventaire.get(inventaire.indexOf(item)).setNbPossede(nombreActuelPossede-1);
             }
             else
             {
@@ -132,7 +132,7 @@ public class Tamagotchi implements Serializable {
         return etat;
     }
 
-    public Hashtable<Item, Integer> getInventaire() {
+    public List<Item> getInventaire() {
         return inventaire;
     }
     
