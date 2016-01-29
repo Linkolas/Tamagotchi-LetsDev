@@ -21,11 +21,24 @@ public class ActionsBoutons {
     }
     
     public boolean nourrir() {
-        FenInventaire feninv = new FenInventaire();
-        Hashtable<Item, Integer> inventaire = fen.getTamagotchi().getInventaire();
+        FenInventaire feninv = new FenInventaire(fen.getTamagotchi());
+        feninv.setVisible(true);
+        List<Item> inventaire = fen.getTamagotchi().getInventaire();
         
         List<Item> miammiam = new ArrayList<>();
         List<Item> boisson = new ArrayList<>();
+        for(int i=0;i<inventaire.size();i++)
+        {
+                if(inventaire.get(i) instanceof MiamMiam && inventaire.get(i).getNbPossede()!=0)
+                {
+                        miammiam.add(inventaire.get(i));
+                }
+                if(inventaire.get(i) instanceof Boisson && inventaire.get(i).getNbPossede()!=0)
+                {
+                        boisson.add(inventaire.get(i));
+                }
+        }
+        /*
         for(Item i: inventaire.keySet()) {
             
             if(i instanceof MiamMiam && inventaire.get(i) != 0) {
@@ -35,7 +48,7 @@ public class ActionsBoutons {
                 boisson.add(i);
             }
             
-        }
+        }*/
         
         feninv.addPanel("MiamMiam", miammiam);
         feninv.addPanel("Boisson", boisson);
